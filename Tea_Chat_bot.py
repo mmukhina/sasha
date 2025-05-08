@@ -1,12 +1,30 @@
 import telebot
 from telebot import types
 
-bot = telebot.TeleBot(token="8057253291:AAGJ6XypfwO4-WrY897HO7E9BlnDaDp6E6g")
+#bot = telebot.TeleBot(token="8057253291:AAGJ6XypfwO4-WrY897HO7E9BlnDaDp6E6g")
 
 test_points = {}
 
 r_file = 'rating.txt'
 rating_user1 = {}
+
+from flask import Flask, request
+
+server = Flask(__name__)
+
+@server.route('/' + os.environ.get('8057253291:AAGJ6XypfwO4-WrY897HO7E9BlnDaDp6E6g'), methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://your-render-app-name.onrender.com/' + os.environ.get('BOT_TOKEN'))
+    return "Webhook set!", 200
+
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 5000)))
 
 def load_rating():
     with open(r_file, 'r', encoding='utf-8') as f:
