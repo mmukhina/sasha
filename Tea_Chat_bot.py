@@ -20,7 +20,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://your-render-app-name.onrender.com/' + os.environ.get('BOT_TOKEN'))
+    bot.set_webhook(url='https://sasha-a6q7.onrender.com/' + os.environ.get('8057253291:AAGJ6XypfwO4-WrY897HO7E9BlnDaDp6E6g'))
     return "Webhook set!", 200
 
 if __name__ == "__main__":
