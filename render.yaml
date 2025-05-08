@@ -3,7 +3,7 @@ services:
     name: tea-telegram-bot
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python main.py
+    startCommand: python Tea_Chat_bot.py
     envVars:
       - key: BOT_TOKEN
         fromGroup: false
